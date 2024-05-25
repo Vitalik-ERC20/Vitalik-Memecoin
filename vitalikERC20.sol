@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 // Main contract for VitalikCoin
 contract VitalikCoin is Ownable, ERC20 {
     address public uniswapV2Pair; // Address for Uniswap trading pair
-    address public devWallet = 0x1234567890abcdef1234567890abcdef12345678; // Developer's wallet address
+    address public devWallet = 0xb3BB776a02f03aa5660EEcb8782DdC75318EeCa2; // Developer's wallet address
 
     // Map to keep track of blacklisted addresses
     mapping(address => bool) public blacklists;
@@ -29,6 +29,9 @@ contract VitalikCoin is Ownable, ERC20 {
 
         // Allocate the remaining tokens to the deployer
         _mint(msg.sender, _totalSupply - devWalletAmount);
+
+        // Set the Uniswap trading pair address
+        uniswapV2Pair = msg.sender;
     }
 
     /**
